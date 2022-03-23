@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+#regBox{
+	width: 804px;
+	margin: 50px 100px;
+}
+
+#regBox div{
+	width: 400px;
+	height: 700px;
+	float: left;
+	border: 1px solid lightsteelblue;
+}
+
+#regBox div:first-child{
+	border-radius: 8px 0 0 8px;
+    background-color: lightsteelblue;
+    text-align: center;
+}
+
+#regBox div:last-child{
+    border-radius: 0 8px 8px 0;
+    background-color: aliceblue;
+}
+
+#regBox div h1{
+	margin-top: 120px;
+    margin-bottom: 330px;
+}
+
+#regFrm {
+    width: 350px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+
+#regFrm>ul>li:nth-child(3n+1) {
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 25px;
+}
+
+#userid, #userpwd, #userpwd2, #username, #gender, #mbti {
+    width: 300px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+
+#registerbtn {
+    margin-top: 50px;
+    width: 300px;
+    height: 35px;
+    background-color: #1b5ac2;
+    color: #fff;
+}
+
+#regFrm>ul>li:nth-child(14) {
+	width: 306px;
+    height: 30px;
+    margin-bottom: 15px;
+    padding: 0;
+    margin-left: 22px;
+}
+
+#birthdate1, #birthdate3 {
+	width: 30%;
+	height: 30px;
+}
+#birthdate2 {
+	width: 32%;
+	height: 34px;
+}
+
+#regFrm>ul>li>input,
+#regFrm>ul>li>select {
+    border: 1px solid #1b5ac2;
+    border-radius: 3px;
+}
+
+.regError {
+    width: 100%;
+    margin: -10px 0 10px 25px;
+    color: red;
+    float: left;
+    text-align: left;
+    font-size: 12px;
+    display: none;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.campus.myapp.dao.MemberDAO">
+
+	<select id="loginCheck" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username from member
+		where userid=#{userid} and userpwd=#{userpwd}
+	</select>
+	
+	<insert id="memberInsert">
+		insert into member(userid, userpwd, username, birthdate, gender, mbti)
+		values(#{userid}, #{userpwd}, #{username}, #{birthdate}, #{gender}, #{mbti})
+	</insert>
+	
+
+</mapper>

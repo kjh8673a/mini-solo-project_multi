@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+#loginBox{
+	width: 804px;
+	margin: 50px 100px;
+}
+
+#loginBox div{
+	width: 400px;
+	height: 500px;
+	float: left;
+	border: 1px solid lightsteelblue;
+}
+
+#loginBox div:first-child{
+	border-radius: 8px 0 0 8px;
+    background-color: lightsteelblue;
+    text-align: center;
+}
+
+#loginBox div:last-child{
+    border-radius: 0 8px 8px 0;
+    background-color: aliceblue;
+}
+
+#loginBox div h1{
+	margin-top: 120px;
+    margin-bottom: 220px;
+}
+
+#logFrm {
+    width: 350px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#logFrm>ul>li:first-child,
+#logFrm>ul>li:nth-child(4) {
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 25px;
+}
+
+#userid, #userpwd {
+    width: 300px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+#loginbtn {
+    margin-top: 100px;
+    width: 300px;
+    height: 35px;
+    background-color: #1b5ac2;
+    color: #fff;
+}
+
+#logFrm>ul>li>input {
+    border: 1px solid #1b5ac2;
+    border-radius: 3px;
+}
+
+.loginError {
+    width: 100%;
+    margin: -10px 0 10px 25px;
+    color: red;
+    float: left;
+    text-align: left;
+    font-size: 12px;
+    display: none;
+}
