@@ -4,6 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.campus.myapp.dao.WantDAO">
 	<insert id="wantWrite">
-		insert into wantboard(userid, kind, comment) values(#{userid}, #{kind}, #{comment})
+		insert into want(userid, kind, comment) values(#{userid}, #{kind}, #{comment})
 	</insert>
+	
+	<select id="wantList" resultType="com.campus.myapp.vo.WantVO">
+		select userid, wantno, kind, comment, writedate, status from want
+		order by wantno desc
+	</select>
+	
+	<update id="wantEdit">
+		update want set status=#{status}
+		where wantno=${wantno}
+	</update>
 </mapper>

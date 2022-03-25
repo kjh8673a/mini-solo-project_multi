@@ -1,16 +1,17 @@
 package com.campus.myapp.vo;
 
 public class WantVO {
-	private int wantno;
+	private Integer wantno;
 	private String userid;
 	private String kind;
 	private String comment;
 	private String writedate;
+	private String status;
 	
-	public int getWantno() {
+	public Integer getWantno() {
 		return wantno;
 	}
-	public void setWantno(int wantno) {
+	public void setWantno(Integer wantno) {
 		this.wantno = wantno;
 	}
 	public String getUserid() {
@@ -36,6 +37,12 @@ public class WantVO {
 	}
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

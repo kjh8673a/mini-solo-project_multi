@@ -22,7 +22,9 @@
 		
 		<c:if test="${logStatus == 'Y' }">
 			<li><a href="/myapp/member/logout">로그아웃</a></li>
-			<li><a href="/myapp/member/myPage">마이페이지</a></li>
+			<c:if test="${logId ne 'admin'}">
+				<li><a href="/myapp/member/myPage">마이페이지</a></li>
+			</c:if>
 			<c:if test="${logId eq 'admin'}">
 				<li><a href="/myapp/admin/adminPage">관리자</a></li>
 			</c:if>

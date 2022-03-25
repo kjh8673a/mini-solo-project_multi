@@ -1,7 +1,6 @@
 package com.campus.myapp.vo;
 
 public class MemberVO {
-	private int userno;
 	private String userid;
 	private String userpwd;
 	private String username;
@@ -15,13 +14,6 @@ public class MemberVO {
 	private String mbti;
 	private String registerdate;
 		
-	
-	public int getUserno() {
-		return userno;
-	}
-	public void setUserno(int userno) {
-		this.userno = userno;
-	}
 	public String getUserid() {
 		return userid;
 	}
