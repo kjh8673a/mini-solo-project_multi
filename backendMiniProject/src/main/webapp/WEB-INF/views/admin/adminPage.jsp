@@ -76,11 +76,48 @@ $(function(){
 				console.log(e.responseText);
 			}
 		});
-		
 	});
 	
 	wantListAll();
 });
+
+$(function(){
+	function contentListAll() {
+		var url = "/myapp/content/list";
+		var params = "kind=${vo.kind}";
+		$.ajax({
+			url: url,
+			data: params,
+			success: function(result) {
+				var $result = $(result);
+				
+				var tag = "<ul>";
+				tag+="<li>번호</li>";
+				tag+="<li>분류</li>";
+				tag+="<li>제목</li>";
+				tag+="<li>평점</li>";
+				
+				$result.each(function(idx, vo){
+					tag += "<li>" + vo.contentno + "</li>";
+					tag += "<li>" + vo.kind + "</li>";
+					tag += "<li><a href='/myapp/content/contentView?contentno=" + vo.contentno + "'>" + vo.title + "</a></li>";
+					tag += "<li>" + vo.totalrating + "</li>";
+				});
+				
+				tag += "</ul>";
+				
+				$("#contentList").html(tag);
+			},
+			error: function(e) {
+				console.log(e.responseText);
+			}
+		});
+	}
+	
+	contentListAll();
+});
+
+
 </script>
 
 <style>
@@ -109,50 +146,46 @@ $(function(){
 	display: block;
 	height: 500px;
 }
+#contentList>ul{
+	overflow: auto;
+}
+#contentList>ul>li{
+	float:left; height:40px; line-height:40px; border-bottom:1px solid #ddd;
+	width:10%;
+}
+#contentList>ul>li:nth-child(4n+3){
+	width: 70%;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
-#contentList>li{
-	float:left; width:10%; height:40px; line-height:40px; 
-	border-bottom:1px solid #ddd;
-}
-#contentList>li:nth-child(4n+3){
-	width:60%;
-}
+
 </style>
 <div class="container">
 <h1>관리자메뉴</h1>
 	<ul class="tab_title">
-		<li class="on">요청</li>
-		<li>컨텐츠관리</li>
+		<li >요청</li>
+		<li class="on">컨텐츠관리</li>
 	</ul>
 	
 	<hr/><hr/>
 	
 	<div class="tab_content">
-		<div class="on">
+		<div>
 			<h3>요청목록</h3>
 			<div id="wantList">
 			
 			</div>
 		</div>
-		<div>
+		<div class="on">
 			<h3>컨텐츠목록</h3>
 			<div>
 				<a href="/myapp/content/contentWrite">글쓰기</a>
 			</div>
-			<ul id="contentList">
-				<li>번호</li>
-				<li>분류</li>
-				<li>제목</li>
-				<li>평점</li>
-				
-				<c:forEach var="list" items="${list}">
-					<li>${list.contentno}</li>
-					<li>${list.kind}</li>
-					<li>${list.title}</li>
-					<li>${list.totalrating}</li>
-				</c:forEach>
-			</ul>
+			<div id="contentList">
 			
+			</div>
 		</div>
 	</div>
 </div>

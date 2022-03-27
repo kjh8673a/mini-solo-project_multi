@@ -8,9 +8,36 @@
 		values(#{kind}, #{title}, #{madeby}, #{detail}, #{userid})
 	</insert>
 	
-	<select id="contentSelectAll" resultType="com.campus.myapp.vo.ContentVO">
+	<select id="contentList" resultType="com.campus.myapp.vo.ContentVO">
 		select contentno, kind, title, totalrating
-		from content order by contentno desc
+		from content
+		order by contentno desc
 	</select>
+	
+	<select id="contentSelect" resultType="com.campus.myapp.vo.ContentVO">
+		select contentno, kind, title, madeby, totalrating, detail
+		from content where contentno=#{param1}
+	</select>
+	
+	<select id="movieList" resultType="com.campus.myapp.vo.ContentVO">
+		select contentno, kind, title, totalrating
+		from content
+		where kind="영화"
+		order by totalrating desc, contentno desc
+	</select>
+	
+	<select id="contentsSelect" resultType="com.campus.myapp.vo.ContentVO">
+		select contentno, kind, title, madeby, totalrating, detail
+		from content where contentno=#{param1}
+	</select>
+	
+	<select id="myList" resultType="com.campus.myapp.vo.ContentVO">
+		select c.contentno, c.kind, c.title, c.totalrating, r.myrating, r.userid
+		from content as c
+		join rating as r
+		on c.contentno = r.contentno
+		order by totalrating desc, contentno desc
+	</select>
+	
 	
 </mapper>

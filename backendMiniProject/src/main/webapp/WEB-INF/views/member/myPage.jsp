@@ -30,7 +30,7 @@ $(function(){
 						tag += " / " + vo.writedate;
 						tag += " / " + vo.status;
 						tag += "<br/>" + vo.comment;
-						tag += "<hr/></li>"
+						tag += "<hr/></li>";
 					}
 				});
 				
@@ -75,6 +75,43 @@ $(function(){
 	wantListAll();
 });
 
+
+// myList
+$(function(){
+	function myListAll() {
+		var url = "/myapp/content/myList";
+		$.ajax({
+			url: url,
+			success: function(result) {
+				var $result = $(result);
+				
+				var tag = "<ul>";
+				tag+="<li>번호</li>";
+				tag+="<li>분류</li>";
+				tag+="<li>제목</li>";
+				tag+="<li>내 평점</li>";
+				
+				$result.each(function(idx, vo){
+					if(vo.userid == '${logId}') {
+						tag += "<li>" + vo.contentno + "</li>";
+						tag += "<li>" + vo.kind + "</li>";
+						tag += "<li><a href='/myapp/content/contentsView?contentno=" + vo.contentno + "'>" + vo.title + "</a></li>";
+						tag += "<li>" + vo.myrating + "</li>";
+					}
+				});
+				
+				tag += "</ul>";
+				
+				$("#myList").html(tag);
+			},
+			error: function(e) {
+				console.log(e.responseText);
+			}
+		});
+	}
+	
+	myListAll();
+});
 </script>
 <style>
 .tab_title li.on{
@@ -87,7 +124,7 @@ $(function(){
 .tab_content>div.on{
 	display: block;
 }
-#wantList {
+#wantList, #myList {
 	display: block;
 	height: 500px;
 }
@@ -95,18 +132,36 @@ $(function(){
 #wantList>ul>li {
 	height: 50px;
 }
+
+#myList {
+	display: block;
+	height: 500px;
+}
+#myList>ul{
+	overflow: auto;
+}
+#myList>ul>li{
+	float:left; height:40px; line-height:40px; border-bottom:1px solid #ddd;
+	width:10%;
+}
+#myList>ul>li:nth-child(4n+3){
+	width: 70%;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 </style>
 <div class="container">
 <h1>${logId} 마이페이지</h1>
 	<ul class="tab_title">
-		<li class="on">요청</li>
-		<li>회원정보수정</li>
+		<li >요청</li>
+		<li class="on">내 컨텐츠</li>
 	</ul>
 	
 	<hr/><hr/>
 	
 	<div class="tab_content">
-		<div class="on">
+		<div >
 			<!-- 댓글쓰기 -->
 			<form method='post' id="wantFrm">
 				<select name="kind" id="kind">	
@@ -125,8 +180,12 @@ $(function(){
 			</div>
 		</div>
 		
-		<div>
-			<h3>회원정보수정</h3>
+		<div class="on">
+			<h3>MY CONTENTS</h3>
+			
+			<div id="myList">
+			
+			</div>
 		</div>
 	</div>
 

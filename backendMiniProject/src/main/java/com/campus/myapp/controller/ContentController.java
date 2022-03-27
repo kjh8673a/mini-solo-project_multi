@@ -1,12 +1,15 @@
 package com.campus.myapp.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,24 +24,41 @@ import com.campus.myapp.vo.ContentVO;
 public class ContentController {
 	@Inject
 	ContentService service;
-	
-	@GetMapping("contentList")
-	public ModelAndView contentList() {
+	// 글목록
+	@GetMapping("list")
+	public List<ContentVO> list(ContentVO vo) {
+		return service.contentList(vo);
+	}
+	// 글내용보기
+	@GetMapping("contentView")
+	public ModelAndView contentView(Integer contentno) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("list", service.contentSelectAll());
+		mav.addObject("vo", service.contentSelect(contentno));
+		mav.setViewName("content/contentView");
 		
-		mav.setViewName("content/contentList");
 		return mav;
-	}
+	}	
 	
+	// 컨텐츠내용보기
+	@GetMapping("contentsView")
+	public ModelAndView contentsView(Integer contentno) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("vo", service.contentsSelect(contentno));
+		mav.setViewName("content/contentsView");
+		
+		return mav;
+	}	
+		
+		
+	// 글등록폼
 	@GetMapping("contentWrite")
 	public ModelAndView contentWrite() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("content/contentWrite");
 		return mav;
 	}
-	
 	// 글등록
 	@PostMapping("contentWriteOk")
 	public ResponseEntity<String> contentWriteOk(ContentVO vo, HttpServletRequest request) {
@@ -68,7 +88,18 @@ public class ContentController {
 		return entity;
 	}
 	
-
+	// 영화목록
+	@GetMapping("movieList")
+	public List<ContentVO> movieList(ContentVO vo) {
+		return service.movieList(vo);
+	}
+	
+	
+	// my목록
+	@GetMapping("myList")
+	public List<ContentVO> myList(ContentVO vo) {
+		return service.myList(vo);
+	}	
 	
 	
 	

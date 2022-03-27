@@ -19,9 +19,30 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	@Override
-	public List<ContentVO> contentSelectAll() {
-		return dao.contentSelectAll();
+	public List<ContentVO> contentList(ContentVO vo) {
+		return dao.contentList(vo);
 	}
+
+	@Override
+	public ContentVO contentSelect(Integer contentno) {
+		return dao.contentSelect(contentno);
+	}
+
+	@Override
+	public List<ContentVO> movieList(ContentVO vo) {
+		return dao.movieList(vo);
+	}
+
+	@Override
+	public ContentVO contentsSelect(Integer contentno) {
+		return dao.contentsSelect(contentno);
+	}
+
+	@Override
+	public List<ContentVO> myList(ContentVO vo) {
+		return dao.myList(vo);
+	}
+
 
 
 }

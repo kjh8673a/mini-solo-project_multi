@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.campus.myapp.dao.RatingDAO">
+	<insert id="ratingWrite">
+		replace into rating(contentno, userid, mbti, myrating)
+		values(#{contentno}, #{userid}, (select mbti from member where userid=#{userid}), #{myrating})
+	</insert>
+	
+	<select id="ratingList" parameterType="java.util.List" resultType="com.campus.myapp.vo.RatingVO">
+		select contentno, userid, myrating from rating
+		where contentno=${param1}
+	</select>
+	
+	<select id="getRatingAverage" resultType="double">
+		select avg(myrating) from rating
+		where contentno=#{contentno}
+	</select>
+	<update id="updateRating">
+		update content
+		set totalrating=#{totalrating}
+		where contentno=#{contentno}
+	</update>
+
+</mapper>
